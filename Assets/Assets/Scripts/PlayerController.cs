@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rayDistance = 10f;
     [SerializeField] private AnimatorController animatorController;
     [SerializeField] private SpriteRenderer spriteRenderer;
-
+    [SerializeField] GameObject proyectil;
     private void Update() {
         Vector2 movementPlayer = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         myRBD2.velocity = movementPlayer * velocityModifier;
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0)){
             Debug.Log("Right Click");
+            Instantiate(proyectil, transform.position, Quaternion.identity);
         }else if(Input.GetMouseButtonDown(1)){
             Debug.Log("Left Click");
         }

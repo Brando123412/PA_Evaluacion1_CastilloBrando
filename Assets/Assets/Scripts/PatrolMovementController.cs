@@ -11,7 +11,9 @@ public class PatrolMovementController : MonoBehaviour
     [SerializeField] private float velocityModifier = 5f;
     private Transform currentPositionTarget;
     private int patrolPos = 0;
-
+    public LayerMask layerMask;
+    [SerializeField] float distanceModifier;
+    Vector2 positionrayo;
     private void Start() {
         currentPositionTarget = checkpointsPatrol[patrolPos];
         transform.position = currentPositionTarget.position;
@@ -21,6 +23,8 @@ public class PatrolMovementController : MonoBehaviour
         CheckNewPoint();
 
         animatorController.SetVelocity(velocityCharacter: myRBD2.velocity.magnitude);
+
+    
     }
 
     private void CheckNewPoint(){
@@ -31,6 +35,7 @@ public class PatrolMovementController : MonoBehaviour
             CheckFlip(myRBD2.velocity.x);
         }
         
+
     }
 
     private void CheckFlip(float x_Position){
