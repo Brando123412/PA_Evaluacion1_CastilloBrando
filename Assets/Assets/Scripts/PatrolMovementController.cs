@@ -21,10 +21,10 @@ public class PatrolMovementController : MonoBehaviour
 
     private void Update() {
         CheckNewPoint();
-
         animatorController.SetVelocity(velocityCharacter: myRBD2.velocity.magnitude);
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, (currentPositionTarget.position - transform.position).normalized,distanceModifier, layerMask);
 
-    
+        Debug.DrawRay(transform.position, (currentPositionTarget.position - transform.position).normalized * distanceModifier, Color.blue);
     }
 
     private void CheckNewPoint(){

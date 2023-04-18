@@ -13,3 +13,4 @@ public class Bullet : MonoBehaviour
         rb2d.velocity = positionMouse;
     }
 }
+
