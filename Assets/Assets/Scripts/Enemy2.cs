@@ -16,25 +16,26 @@ public class Enemy2 : MonoBehaviour
     {
         if(rangobool.ataque==true)
         {
-            /*if(transform.position != player.transform.position)
+            if(transform.position != player.transform.position)
             {
-                rb2d.velocity = player.transform.position.normalized;
+                
+                //rb2d.AddForceAtPosition(new Vector2(1,1),player.transform.position);
             }
             else
             {
-                speed = 0;
-            }*/
+                //rb2d.AddForceAtPosition(new Vector2(0, 0),transform.position);
+            }
         }
         else
         {
-            if (transform.position != rangobool.transform.position)
+            /*if (transform.position != rangobool.transform.position)
             {
                 rb2d.velocity = rangobool.transform.position;
             }
             else
             {
                 rb2d.velocity=new Vector2(0,0);
-            }
+            }*/
         }
     }
 }

@@ -2597,10 +2597,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangobool: {fileID: 741272680}
-  objetos:
-  - {fileID: 1273751148}
-  - {fileID: 741272677}
-  speed: 0
+  player: {fileID: 1273751148}
+  speed: 1
 --- !u!1 &1843686836
 GameObject:
   m_ObjectHideFlags: 0
