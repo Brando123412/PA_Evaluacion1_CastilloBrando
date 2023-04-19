@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e941351f15ba98e4c95f063560845d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionMouse: {x: 0, y: 0}
+  speed: 5
 --- !u!50 &-4480548982044716015
 Rigidbody2D:
   serializedVersion: 4

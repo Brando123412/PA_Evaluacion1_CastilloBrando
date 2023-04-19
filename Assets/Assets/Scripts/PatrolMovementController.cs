@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PatrolMovementController : MonoBehaviour
 {
+    [SerializeField] HealthBarController VidaBarra;
+    int vida=100;
+    public int golpe=10;
+    public event Action<PatrolMovementController>onGolpe;
     [SerializeField] private Transform[] checkpointsPatrol;
     [SerializeField] private Rigidbody2D myRBD2;
     [SerializeField] private AnimatorController animatorController;
@@ -25,8 +29,13 @@ public class PatrolMovementController : MonoBehaviour
         RaycastHit2D hit2D = Physics2D.Raycast(transform.position, (currentPositionTarget.position - transform.position).normalized,distanceModifier, layerMask);
 
         Debug.DrawRay(transform.position, (currentPositionTarget.position - transform.position).normalized * distanceModifier, Color.blue);
+        if(hit2D)
+        {
+            myRBD2.velocity = (currentPositionTarget.position - transform.position).normalized*velocityModifier*3;
+        }else{
+            myRBD2.velocity = (currentPositionTarget.position - transform.position).normalized*velocityModifier;
+        }
     }
-
     private void CheckNewPoint(){
         if(Mathf.Abs((transform.position - currentPositionTarget.position).magnitude) < 0.25){
             patrolPos = patrolPos + 1 == checkpointsPatrol.Length? 0: patrolPos+1;
@@ -34,11 +43,26 @@ public class PatrolMovementController : MonoBehaviour
             myRBD2.velocity = (currentPositionTarget.position - transform.position).normalized*velocityModifier;
             CheckFlip(myRBD2.velocity.x);
         }
-        
-
     }
-
     private void CheckFlip(float x_Position){
         spriteRenderer.flipX = (x_Position - transform.position.x) < 0;
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            onGolpe?.Invoke(this);
+            print("golpe");
+        }
+        if(other.gameObject.CompareTag("Bullet"))
+        {
+            VidaBarra.UpdateHealth(-10);
+            vida=vida-10;
+            if(vida<=0)
+            {
+                Destroy(this.gameObject);
+            }
+            Destroy(other.gameObject);
+        }
     }
 }
