@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 public class PatrolMovementController : MonoBehaviour
 {
+    [SerializeField] ControlManager cm; 
     [SerializeField] HealthBarController VidaBarra;
     int vida=100;
     public int golpe=10;
@@ -60,6 +61,7 @@ public class PatrolMovementController : MonoBehaviour
             vida=vida-10;
             if(vida<=0)
             {
+                cm.PuntajeInicial=cm.PuntajeInicial+200;
                 Destroy(this.gameObject);
             }
             Destroy(other.gameObject);

@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 public class Enemy2 : MonoBehaviour
 {
+    [SerializeField] ControlManager cm; 
     [SerializeField] HealthBarController VidaBarra;
     int vida=100;
     public int golpe=20;
@@ -47,6 +48,7 @@ public class Enemy2 : MonoBehaviour
             vida=vida-10;
             if(vida<=0)
             {
+                cm.PuntajeInicial=cm.PuntajeInicial+100;
                 Destroy(this.gameObject);
             }
             Destroy(other.gameObject);

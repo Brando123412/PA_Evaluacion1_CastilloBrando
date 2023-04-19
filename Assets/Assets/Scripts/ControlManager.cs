@@ -13,9 +13,22 @@ public class ControlManager : MonoBehaviour
     [SerializeField] UnityEvent OnPlayerDie;
     private List<Enemy2> Enemy2Remaining;
     private List<PatrolMovementController> enemy1Remaining;
-    // Start is called before the first frame update
+    [SerializeField] GameObject Enemigos1;
+    [SerializeField] GameObject Enemigos2;
+    [SerializeField] List<GameObject> ListaEnemigos;
+    [SerializeField] UnityEvent OnPlayerWin;
+    [SerializeField]int puntiacion=0;
+    [SerializeField]public int PuntajeInicial=0;
     void Start()
     {
+        for(int i=0;i<ListaEnemigos.Count;i++){
+            if(Enemigos1==ListaEnemigos[i]){
+                puntiacion =puntiacion+100;
+            }
+            if(Enemigos2==ListaEnemigos[i]){
+                puntiacion =puntiacion+200;
+            }
+        }
         Enemy2Remaining = new List<Enemy2>(enemigo2);
         foreach(Enemy2 Enemy2 in Enemy2Remaining)
         {
@@ -25,6 +38,13 @@ public class ControlManager : MonoBehaviour
         foreach(PatrolMovementController enemy1 in enemy1Remaining)
         {
             enemy1.onGolpe += GolpeEnemigo1;
+        }
+    }
+    void Update(){
+
+        if(PuntajeInicial>=puntiacion-50)
+        {
+            OnPlayerWin?.Invoke();
         }
     }
     private void GolpeEnemigo2(Enemy2 Enemy2)

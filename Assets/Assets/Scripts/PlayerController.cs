@@ -23,10 +23,8 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, mouseInput.normalized * rayDistance, Color.red);
 
         if(Input.GetMouseButtonDown(0)){
-            Debug.Log("Right Click");
             Instantiate(proyectil, transform.position, Quaternion.identity);
         }else if(Input.GetMouseButtonDown(1)){
-            Debug.Log("Left Click");
         }
     }
 
